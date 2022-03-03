@@ -1,2 +1,2 @@
-# TwitchChatboxFix
-fix twitch chatbox scroll bug
+# Userscript
+userscripts for tampermonkey/greasemonkey
