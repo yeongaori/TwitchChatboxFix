@@ -7,10 +7,8 @@
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @description  show pp, selected mods ranking, friends ranking and other stuff
 // @author       oneplusone
-// @match        http://osu.ppy.sh*
-// @match        https://osu.ppy.sh*
-// @match        http://old.ppy.sh*
-// @match        https://old.ppy.sh*
+// @match        https://osu.ppy.sh/*
+// @match        https://old.ppy.sh/*
 // @connect      pp.osuck.net
 
 // @noframes
