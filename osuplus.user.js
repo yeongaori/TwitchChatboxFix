@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         osuplus
 // @namespace    https://osu.ppy.sh/u/1843447
-// @icon         https://w.namu.la/s/29775c4bd04d213c85a3330d7c5348677cfa128dd47bf8388e14e64446a241d696267bbf2d8e0c0ccad2a13f80b1677559ce9d2440f18504a2ae5b0d86931c75d9badc5f16fc3ce8a7de56491d68d53bf04bd038ab93230540d6a85cf46e42f7e72bc140fe0c900dad8cd220034d7b54
+// @icon         https://w.namu.la/s/29775c4bd04d213c85a3330d7c5348677cfa128dd47bf8388e14e64446a241d696267bbf2d8e0c0ccad2a13f80b1677559ce9d2440f18504a2ae5b0d86931c75d9badc5f16fc3ce8a7de56491d68d53bd99be81544d8a64d373ae14de1c6c12d9bd42b7cb6171a2d5bcc4ec8235832dd
 // @version      2.3.8
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
@@ -4955,7 +4955,7 @@
                 makeMirror(`https://dl.sayobot.cn/beatmaps/download/novideo/${jsonBeatmapset.id}`, "Sayobot NoVid", false);
             }
             if(settings.showMirror3){
-                makeMirror(`https://nerina.pw/d/${jsonBeatmapset.id}`, "NeriNyan", false);
+                makeMirror(`https://proxy.nerinyan.moe/d/${jsonBeatmapset.id}`, "NeriNyan", false);
             }
             if(settings.showMirror4){
                 makeMirror(`https://api.chimu.moe/v1/download/${jsonBeatmapset.id}?n=1`, "Chimu.moe", false);
