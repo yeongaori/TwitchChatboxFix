@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         osuplus
 // @namespace    https://osu.ppy.sh/u/1843447
-// @icon         https://w.namu.la/s/29775c4bd04d213c85a3330d7c5348677cfa128dd47bf8388e14e64446a241d696267bbf2d8e0c0ccad2a13f80b1677559ce9d2440f18504a2ae5b0d86931c75d9badc5f16fc3ce8a7de56491d68d53bd99be81544d8a64d373ae14de1c6c12d9bd42b7cb6171a2d5bcc4ec8235832dd
-// @version      2.3.8
+// @icon         https://osu.ppy.sh/images/favicon/favicon-32x32.png
+// @version      2.3.9
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @description  show pp, selected mods ranking, friends ranking and other stuff
-// @author       oneplusone
+// @author       oneplusone, yeongaori
 // @match        https://osu.ppy.sh/*
 // @match        https://old.ppy.sh/*
 // @connect      pp.osuck.net
@@ -594,15 +594,15 @@
             $(document.head).append($("<style class='osuplus-settings-style'></style>").html(
                 `#osuplusSettingsBtn {background:rgba(0,0,0,0.2) url(${settingsImg}) no-repeat 5px 10px; position:fixed; width:42px; height:47px; right:80px; cursor:pointer; z-index:10000;}
                 #osuplusModalOverlay {position:fixed; top:0px; width:100%; height:100%; z-index:19999; background:rgba(0,0,0,0.5);}
-                #osuplusModal {position:fixed; width:600px; z-index:20000; top:30px; background:white; 
+                #osuplusModal {position:fixed; width:600px; z-index:20000; top:30px; background:#382e32;
                     margin-left:-300px; left:50%; border-radius:10px; padding:15px;}
                 .osuplusModalClose {position:absolute; right:15px; top:15px;}
                 .osuplusSettingsContent {height:400px; overflow:auto; padding:10px; margin-bottom:10px;}
-                .osuplusSettingsTable {border-collapse:collapse;}
+                .osuplusSettingsTable {border-collapse:collapse; color:white;}
                 .osuplusSettingsTable tr {margin:1px;}
                 .settingOption {text-align:right;}
                 #osuplusModal {color:black;}
-                #osuplusModal h1, #osuplusModal h2 {color:${osuPink};}`
+                #osuplusModal h1, #osuplusModal h2 {color:#d9a6bd;}`
             ));
         }
 
@@ -617,7 +617,7 @@
                         "<h2>General</h2>",
                         $("<table class='osuplusSettingsTable' width='100%'>").append(
                             makeSettingRow("API key", null, `<input type='text' style='display:none' id='settings-apikey' name='apikey' value='${settings.apikey}'>
-                                                          <label><input type='checkbox' id='show-apikey'>Show</label>`),
+                                                          <label><input type='checkbox' id='show-apikey'> Show</label>`),
                             makeSettingRow("Show Site Switcher", null, makeCheckboxOption("showSiteSwitcher"))
                         )
                     ),
@@ -665,7 +665,7 @@
                         )
                     )
                 ),
-                $("<button id='osuplusSettingsSaveBtn'>Save</button>").click(function(){
+                $("<button id='osuplusSettingsSaveBtn' style='background-color:rgba(0,0,0,0); border-color:rgba(0,0,0,0); color:#d9a6bd;'>Save</button>").click(function(){
                     GMX.setValue("apikey", $("#settings-apikey").val());
                     var properties = [
                         "showMirror", "showMirror2", "showMirror3", "showMirror4", "showSubscribeMap", "showDates", "showPpRank", "fetchPlayerCountries", "showTop100", "pp2dp", "failedChecked", 
@@ -2298,7 +2298,7 @@
             $("body").append("<div class='opModal' id='opModal' style='display:none;'></div>");
             opModalContent = $("<div id='opModalContent'>");
             $("#opModal").append(
-                "<div class='opModalCloseBtnDiv' style='display: block;''><button class='opModalCloseBtn'>x</button></div>", 
+                "<div class='opModalCloseBtnDiv' style='display: block;''><button class='opModalCloseBtn'>x</button></div>",
                 opModalContent
             );
             $("#opModalOverlay, .opModalCloseBtn").click(function(){
@@ -2814,7 +2814,7 @@
                     .modal-hr {color: red;}
                     .modal-ez {color: green;}
                     .opModal {color: black;}
-                    .opModal h1 {color: ${osuPink};}
+                    .opModal h1 {color: white;}
                     .mod--V2 {background-image: url('${v2Img}');}
                     .ppcalc-pp {cursor: pointer;}
                     .play-detail {position: relative;}
