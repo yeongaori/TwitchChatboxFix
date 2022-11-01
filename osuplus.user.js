@@ -2,7 +2,7 @@
 // @name         osuplus
 // @namespace    https://osu.ppy.sh/u/1843447
 // @icon         https://osu.ppy.sh/images/favicon/favicon-32x32.png
-// @version      2.3.9
+// @version      2.4.0
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @description  show pp, selected mods ranking, friends ranking and other stuff
@@ -177,6 +177,7 @@
         showMirror2: false,
         showMirror3: false,
         showMirror4: false,
+        showMirror5: false,
         showSubscribeMap: true,
         apikey: null,
         failedChecked: true,
@@ -628,6 +629,7 @@
                             makeSettingRow("Show Sayobot mirror", null, makeCheckboxOption("showMirror2")),
                             makeSettingRow("Show NeriNyan mirror", null, makeCheckboxOption("showMirror3")),
                             makeSettingRow("Show Chimu.moe mirror", null, makeCheckboxOption("showMirror4")),
+                            makeSettingRow("Show Kitsu mirror", null, makeCheckboxOption("showMirror5")),
                             makeSettingRow("Show subscribe map", null, makeCheckboxOption("showSubscribeMap")),
                             makeSettingRow("Show dates", null, makeCheckboxOption("showDates")),
                             makeSettingRow("Show pp rank beside player", "scores may take longer to load", makeCheckboxOption("showPpRank")),
@@ -668,7 +670,7 @@
                 $("<button id='osuplusSettingsSaveBtn' style='background-color:rgba(0,0,0,0); border-color:rgba(0,0,0,0); color:#d9a6bd;'>Save</button>").click(function(){
                     GMX.setValue("apikey", $("#settings-apikey").val());
                     var properties = [
-                        "showMirror", "showMirror2", "showMirror3", "showMirror4", "showSubscribeMap", "showDates", "showPpRank", "fetchPlayerCountries", "showTop100", "pp2dp", "failedChecked", 
+                        "showMirror", "showMirror2", "showMirror3", "showMirror4", "showMirror5", "showSubscribeMap", "showDates", "showPpRank", "fetchPlayerCountries", "showTop100", "pp2dp", "failedChecked",
                         "showDetailedHitCount", "showHitsPerPlay", "fetchUserpageMaxCombo", "fetchFirstsInfo", "rankingVisible", "forceShowDifficulties", "showSiteSwitcher", "showMpGrades"
                     ];
                     for(let property of properties){
@@ -4959,6 +4961,9 @@
             }
             if(settings.showMirror4){
                 makeMirror(`https://api.chimu.moe/v1/download/${jsonBeatmapset.id}?n=1`, "Chimu.moe", false);
+            }
+            if(settings.showMirror5){
+                makeMirror(`https://kitsu.moe/api/d/${jsonBeatmapset.id}`, "Kitsu", false);
             }
         }
 
