@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Youtube Skip Self-harm notification
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.0.3
+// @version      1.1.0
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/ytnoselfharmnotif.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/ytnoselfharmnotif.user.js
 // @description  Skip 'The following content may contain suicide or self-harm topics.' notification
@@ -12,10 +12,17 @@
 // ==/UserScript==
 
 var delay = 250; // delay of pressing the 'I understand and wish to proceed' button, 250 is default
+var hide_emergency_warnings = false; // hide emergency warnings, disabled on default
 
 window.addEventListener('load', function() {
     setTimeout(() => {
         document.getElementsByClassName("style-scope yt-playability-error-supported-renderers")[0].style.visibility = "hidden";
         document.getElementsByClassName("yt-spec-touch-feedback-shape yt-spec-touch-feedback-shape--overlay-touch-response-inverse")[0].click();
+        if (hide_emergency_warnings == true){
+            var emergency_warnings = document.getElementById("clarify-box");
+            if (emergency_warnings){
+                emergency_warnings.parentNode.removeChild(emergency_warnings);
+            }
+        }
     }, delay);
 }, false);
