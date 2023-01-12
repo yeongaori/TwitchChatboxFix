@@ -5,7 +5,7 @@
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/jindan.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/jindan.user.js
 // @description  automatically do 'jagajindan'
-// @icon           https://play-lh.googleusercontent.com/cKIPifwuWHrwrYg2A-fTj2hzQypTfVXFU4SYGZzvx-nGvCpJTDNkrlUfuGCNZwlAXA=s180-rw
+// @icon         https://play-lh.googleusercontent.com/cKIPifwuWHrwrYg2A-fTj2hzQypTfVXFU4SYGZzvx-nGvCpJTDNkrlUfuGCNZwlAXA=s180-rw
 // @author       yeongaori
 // @match        *://hcs.eduro.go.kr/*
 // @grant        none
