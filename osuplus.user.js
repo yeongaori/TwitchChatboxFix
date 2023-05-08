@@ -2,7 +2,7 @@
 // @name         osuplus
 // @namespace    https://osu.ppy.sh/u/1843447
 // @icon         https://osu.ppy.sh/images/favicon/favicon-32x32.png
-// @version      2.4.1
+// @version      2.4.1.1
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/osuplus.user.js
 // @description  show pp, selected mods ranking, friends ranking and other stuff
@@ -218,7 +218,7 @@
         pp2dp: true,
         showSiteSwitcher: false,
         showMpGrades: true,
-		showRecent: true,
+        showRecent: true,
     };
 
     var settings = {};
@@ -390,7 +390,7 @@
     }
 
     function mainInit(){
-		$(".osuplus").remove();
+        $(".osuplus").remove();
         apikey = settings.apikey;
         if(apikey !== null){
             hasKey = true;
@@ -440,7 +440,7 @@
                         "<h2>General</h2>",
                         $("<table class='osuplusSettingsTable' width='100%'>").append(
                             makeSettingRow("API key", null, `<input type='text' style='display:none' id='settings-apikey' name='apikey' value='${settings.apikey}'>
-                                                          <label><input type='checkbox' id='show-apikey'> Show</label>`),
+                                                          <label><input type='checkbox' id='show-apikey'>Show</label>`),
                             makeSettingRow("Show Site Switcher", null, makeCheckboxOption("showSiteSwitcher"))
                         )
                     ),
@@ -1774,7 +1774,7 @@
                         me.find(".pp-display b").text("...pp");
                         me.find(".pp-display-weight").text("(...)");
                         var ppcalcData = JSON.parse(me.parent().find(".op-ppcalc-data").text());
-                        doPpCalc(ppcalcData).then((result) => {
+                        doPpcalc(ppcalcData).then((result) => {
                             me.find(".pp-display b").text(`${result.pp}pp`);
                             me.find(".pp-display-weight").text(`(${result.pp_fc}pp if FC)`);
                         });
@@ -1807,6 +1807,7 @@
     function osuplusNewUserpage(){
         var jsonUser = null,
             gameMode = null,
+			userBest = null,
             opModalContent = null;
 
         function addCss(){
@@ -3899,7 +3900,7 @@
             }
             if(settings.showMirror2){
                 makeMirror(`https://dl.sayobot.cn/beatmaps/download/full/${jsonBeatmapset.id}`, "Sayobot", null, false);
-                makeMirror(`https://dl.sayobot.cn/beatmaps/download/novideo/${jsonBeatmapset.id}`, "Sayobot no Video", false);
+                makeMirror(`https://dl.sayobot.cn/beatmaps/download/novideo/${jsonBeatmapset.id}`, "Sayobot", "no Video", false);
             }
             if(settings.showMirror3){
                 makeMirror(`https://api.nerinyan.moe/d/${jsonBeatmapset.id}`, "NeriNyan", null, false);
@@ -3910,46 +3911,6 @@
             }
             if(settings.showMirror5){
                 makeMirror(`https://kitsu.moe/api/d/${jsonBeatmapset.id}`, "Kitsu", null, false);
-            }
-        }
-
-        async function addSubBtn(){
-            subscribed = await subscriberManager.map.isSubscribed(jsonBeatmapset.id.toString());
-            $(".beatmapset-header__more").before(
-                `<a class='btn-osu-big btn-osu-big--beatmapset-header sub-button' title='Subscribe map'>
-                    <span class='btn-osu-big__content'>
-                        <span class='btn-osu-big__left'>
-                            <span class="btn-osu-big__text-top">Subscribe</span>
-                        </span>
-                        <span class="btn-osu-big__icon">
-                            <span class="fa-fw"><i class="far fa-heart"></i></span>
-                        </span>
-                    </span>
-                </a>`
-            );
-            $(".sub-button").click(function(){
-                if(subscribed){
-                    subscriberManager.map.remove(jsonBeatmapset.id.toString()).then(() => {
-                        subscribed = false;
-                        refreshSubImg(subscribed);
-                    });
-                }else{
-                    subscriberManager.map.add(jsonBeatmapset.id.toString(), jsonBeatmapset.artist, jsonBeatmapset.title, jsonBeatmapset.creator, jsonBeatmapset.user_id.toString()).then(() => {
-                        subscribed = true;
-                        refreshSubImg(subscribed);
-                    });
-                }
-            });
-            refreshSubImg(subscribed);
-        }
-
-        function refreshSubImg(subscribed){
-            if(subscribed){
-                $(".sub-button").addClass("subbed");
-                $(".sub-button").find(".btn-osu-big__text-top").text("Unsubscribe");
-            }else{
-                $(".sub-button").removeClass("subbed");
-                $(".sub-button").find(".btn-osu-big__text-top").text("Subscribe");
             }
         }
 
