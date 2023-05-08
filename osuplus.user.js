@@ -434,7 +434,7 @@
             $("<div id='osuplusModalOverlay' class='osuplus' style='display:none;'></div>"),
             $("<div id='osuplusModal' class='osuplus' style='display:none;'></div>").append(
                 "<h1>osuplus settings</h1>",
-                "<button class='osuplusModalClose'>x</button>",
+                "<button class='osuplusModalClose' style='background-color: #382e32; color: #FFFFFF; border-style: none; font-size: 22px;'>x</button>",
                 $("<div class='osuplusSettingsContent'>").append(
                     $("<div>").append(
                         "<h2>General</h2>",
