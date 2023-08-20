@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NaverCafeRevealID
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.1
+// @version      1.1.1
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @description  Revealing Member ID on Naver Cafe
@@ -27,9 +27,8 @@ window.addEventListener('load', function() {
 var cafeId = window.location.href.split("/")[5];
 var memberKey = window.location.href.split("/")[7];
 var memberId = "";
-var isLoaded = false;
 
-if (devmode == true){
+if (devmode){
   console.log("Found target cafeId: " + cafeId);
   console.log("Found target memberKey: " + memberKey);
 }
@@ -45,31 +44,28 @@ function processJson(rspObj) {
     reportAJAX_Error(rspObj);
     return;
   }
-  if (devmode == true) console.log("Naver API Response: ", rspObj.response);
+  if (devmode) console.log("Naver API Response: ", rspObj.response);
   try {
     var json = JSON.parse(rspObj.response);
     memberId = json.message.result.memberId;
-    if (devmode == true){
+    if (devmode){
       console.log("Parsed JSON: ", json);
       console.log("Member ID: ", memberId);
     }
   } catch (error) {
-    if (devmode == true) console.error("Error parsing JSON:", error);
+    if (devmode) console.error("Error parsing JSON:", error);
   }
-  const checkLoaded = () => {
-    if (isLoaded = true) {
-      clearInterval(interval);
-      var nick_btn = document.getElementsByClassName("nick_btn")[0];
-      var memberIdString = "(" + memberId + ")";
-      nick_btn.textContent = nick_btn.textContent.split("(")[0] + memberIdString + nick_btn.textContent.split(")")[1];
-    } else {
-      console.log("Web page is not loaded yet.");
-    }
-  };
-
-  const interval = setInterval(checkLoaded, 100);
 }
 
-window.addEventListener('load', function() {
-  isLoaded = true;
-}, false);
+var observer = new MutationObserver(function(mutationsList) {
+  for (var mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      if (document.getElementsByClassName("nick_btn").length > 0) {
+        var nick_btn = document.getElementsByClassName("nick_btn")[0];
+        var memberIdString = "(" + memberId + ")";
+        nick_btn.textContent = nick_btn.textContent.split("(")[0] + memberIdString + nick_btn.textContent.split(")")[1];
+      }
+    }
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
