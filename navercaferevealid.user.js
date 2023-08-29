@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NaverCafeRevealID
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.1.1
+// @version      1.1.2
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @description  Revealing Member ID on Naver Cafe
@@ -9,7 +9,6 @@
 // @match        https://cafe.naver.com/ca-fe/cafes/*/members/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=naver.com
 // @grant        GM_xmlhttpRequest
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
 // ==/UserScript==
 
 var devmode = false;
