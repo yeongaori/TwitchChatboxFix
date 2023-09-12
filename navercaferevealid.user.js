@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NaverCafeRevealID
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.1.2
+// @version      1.1.3
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/navercaferevealid.user.js
 // @description  Revealing Member ID on Naver Cafe
@@ -68,3 +68,7 @@ var observer = new MutationObserver(function(mutationsList) {
   }
 });
 observer.observe(document.body, { childList: true, subtree: true });
+
+function reportAJAX_Error(rsp) {
+    console.log("Error: " + rsp.status + ", " + rsp.statusText);
+}
