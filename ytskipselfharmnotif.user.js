@@ -11,7 +11,7 @@
 // @grant        none
 // ==/UserScript==
 
-var hide_emergency_warnings = true; // hide emergency warnings, disabled on default
+var hide_emergency_warnings = false; // hide emergency warnings, disabled on default
 
 const callback = (mutationList, observer) => {
   for (const mutation of mutationList) {
