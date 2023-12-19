@@ -38,5 +38,5 @@ const observer = new MutationObserver(handleMutations);
 observer.observe(document, { childList: true, subtree: true });
 
 function chatUpdated(name, message){
-    console.log("Name: " + name + ", Message: " + message);
+    console.log("Name: " + name + "\nMessage: " + message);
 }
