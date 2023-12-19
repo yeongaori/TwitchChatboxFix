@@ -67,11 +67,11 @@ const observer = new MutationObserver(handleMutations);
 observer.observe(document, { childList: true, subtree: true });
 
 function chatUpdated(name, message, hasBadge){
-    console.log("CHAT\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge);
+    //console.log("CHAT\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge);
     //your code here
 }
 
 function donationUpdated(name, message, hasBadge, money){
-    console.log("DONATION\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge + "\nMoney: " + money);
+    //console.log("DONATION\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge + "\nMoney: " + money);
     //your code here
 }
