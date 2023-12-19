@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CHZZK Chat
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.1
+// @version      1.1.1
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/chzzk-chat.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/chzzk-chat.user.js
 // @description  CHZZK chat test
@@ -26,14 +26,14 @@ function handleMutations(mutationsList) {
                             const name = chatNameElement.textContent.trim();
                             chatMessageTextElements.forEach(chatMessageElement => {
                                 const message = chatMessageElement.textContent.trim();
-                                let isSubscribed = false;
+                                let hasBadge = false;
                                 chatBadgeImgElements.forEach(chatBadgeElement => {
                                     const badge = chatBadgeElement.alt.trim();
-                                    if( badge == "입덕 완료" ){
-                                        isSubscribed = true;
+                                    if( badge ){
+                                        hasBadge = true;
                                     }
                                 });
-                                chatUpdated(name, message, isSubscribed);
+                                chatUpdated(name, message, hasBadge);
                             });
                         });
                         const donationNameTextElements = node.querySelectorAll('[class^="name_text"]');
@@ -44,15 +44,15 @@ function handleMutations(mutationsList) {
                             const name = donationNameElement.textContent.trim();
                             donationMessageTextElements.forEach(donationMessageElement => {
                                 const message = donationMessageElement.textContent.trim();
-                                let isSubscribed = false;
+                                let hasBadge = false;
                                 donationBadgeImgElements.forEach(donationBadgeElement => {
                                         const badge = donationBadgeElement.alt.trim();
-                                        if( badge == "입덕 완료" ){
-                                            isSubscribed = true;
+                                        if( badge ) {
+                                            hasBadge = true;
                                         }
                                         donationMoneyElements.forEach(donationMoneyElement => {
                                             const money = parseInt(donationMoneyElement.textContent.trim().replaceAll(",", ""));
-                                            donationUpdated(name, message, isSubscribed, money);
+                                            donationUpdated(name, message, hasBadge, money);
                                         });
                                 });
                             });
@@ -63,16 +63,15 @@ function handleMutations(mutationsList) {
         });
     }
 }
-
 const observer = new MutationObserver(handleMutations);
 observer.observe(document, { childList: true, subtree: true });
 
-function chatUpdated(name, message, isSubscribed){
-    //console.log("CHAT\nName: " + name + "\nMessage: " + message + "\nisSubscribed: " + isSubscribed);
+function chatUpdated(name, message, hasBadge){
+    console.log("CHAT\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge);
     //your code here
 }
 
-function donationUpdated(name, message, isSubscribed, money){
-    //console.log("DONATION\nName: " + name + "\nMessage: " + message + "\nisSubscribed: " + isSubscribed + "\nMoney: " + money);
+function donationUpdated(name, message, hasBadge, money){
+    console.log("DONATION\nName: " + name + "\nMessage: " + message + "\nhasBadge: " + hasBadge + "\nMoney: " + money);
     //your code here
 }
