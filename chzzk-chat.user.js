@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CHZZK Chat
 // @namespace    https://github.com/yeongaori/userscript
-// @version      1.2.0
+// @version      1.2.1
 // @updateURL    https://github.com/yeongaori/userscript/raw/master/chzzk-chat.user.js
 // @downloadURL  https://github.com/yeongaori/userscript/raw/master/chzzk-chat.user.js
 // @description  CHZZK chat test
@@ -94,6 +94,7 @@ window.WebSocket = function(url, protocols) {
                 profileData.userIdHash,
                 eventData.bdy[0].msg,
                 eventData.bdy[0].msgTypeCode,
+                JSON.parse(eventData.bdy[0].extras),
                 profileData.profileImageUrl,
                 profileData.userRoleCode,
                 profileData.badge,
@@ -102,7 +103,7 @@ window.WebSocket = function(url, protocols) {
                 profileData.activityBadges,
                 profileData.streamingProperty
             );
-            //console.log('Intercepted data being received');
+            //console.log('Intercepted data being received by ' + profileData.nickname);
             //console.log(eventData);
         };
         return ws;
